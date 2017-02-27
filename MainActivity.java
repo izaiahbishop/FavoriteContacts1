@@ -6,10 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btn1Call, btn1Text, btn2Call, btn2Text, btn3Call, btn3Text;
+    Spinner spnTextOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupButtonClickEvents() {
+
+        spnTextOptions =(Spinner) findViewById(R.id.spinnerTextMessages);
+
         btn1Call = (Button) findViewById(R.id.buttonCallPerson1);
         btn1Call.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -35,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
                 sendIntent.setData(Uri.parse("sms:2188675309"));
-                sendIntent.putExtra("sms_body", "Hi");
+                sendIntent.putExtra("sms_body", spnTextOptions.getSelectedItem().toString());
                 startActivity(sendIntent);
             }
         });
@@ -56,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
                 sendIntent.setData(Uri.parse("sms:2189527145"));
-                sendIntent.putExtra("sms_body", "Hi");
+                sendIntent.putExtra("sms_body", spnTextOptions.getSelectedItem().toString());
                 startActivity(sendIntent);
             }
         });
@@ -77,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent sendIntent = new Intent(Intent.ACTION_VIEW);
                 sendIntent.setData(Uri.parse("sms:2187654126"));
-                sendIntent.putExtra("sms_body", "Hi");
+                sendIntent.putExtra("sms_body", spnTextOptions.getSelectedItem().toString());
                 startActivity(sendIntent);
             }
         });
